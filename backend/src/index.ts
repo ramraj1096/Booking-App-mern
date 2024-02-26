@@ -37,6 +37,8 @@ app.use("api/my-bookings", bookingRoutes)
 app.get("*", (req: Request, res:Response)=>{
     res.sendFile(path.join(__dirname,"../../frontend/index.html"));
 })
+
+app.use(cors({ origin: 'https://booking-app-iyku.onrender.com' }));
  
 mongoose.connect(process.env.MONGO_URL as string)
     .then(()=>console.log("DB Connected Successfully"))

@@ -3,8 +3,10 @@ import User from '../models/user';
 import jwt from 'jsonwebtoken';
 import { check, validationResult } from "express-validator";
 import verifyToken from '../middleware/auth';
+import cors from "cors";
 
 const router = express.Router();
+app.use(cors());
 
 router.get("/me", verifyToken, async (req: Request, res: Response) => {
     const userId = req.userId;

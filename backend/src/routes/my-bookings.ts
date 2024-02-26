@@ -5,7 +5,7 @@ import { HotelType } from "../shared/types";
 import cors from "cors";
 
 const router = express.Router();
-app.use(cors());
+router.use(cors());
 
 // /api/my-bookings
 router.get("/", verifyToken, async (req: Request, res: Response) => {

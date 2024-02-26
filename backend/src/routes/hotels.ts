@@ -7,7 +7,7 @@ import verifyToken from "../middleware/auth";
 import cors from "cors";
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
-app.use(cors());
+router.use(cors());
 
 const router = express.Router();
 

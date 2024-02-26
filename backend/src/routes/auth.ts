@@ -4,9 +4,11 @@ import User from "../models/user";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import verifyToken from "../middleware/auth";
+import cors from "cors";
 
 
 const router = express.Router();
+app.use(cors());
 
 router.post("/login", [
     check("email", "Email is required").isEmail(),

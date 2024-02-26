@@ -6,7 +6,7 @@ import verifyToken from '../middleware/auth';
 import cors from "cors";
 
 const router = express.Router();
-app.use(cors());
+router.use(cors());
 
 router.get("/me", verifyToken, async (req: Request, res: Response) => {
     const userId = req.userId;

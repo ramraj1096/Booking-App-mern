@@ -8,7 +8,7 @@ import { HotelType } from "../shared/types";
 import cors from "cors";
 
 const router = express.Router();
-app.use(cors());
+router.use(cors());
 
 const storage = multer.memoryStorage();
 const upload = multer({

@@ -5,8 +5,10 @@ import Hotel from "../models/hotel";
 import verifyToken from "../middleware/auth";
 import { body } from "express-validator";
 import { HotelType } from "../shared/types";
+import cors from "cors";
 
 const router = express.Router();
+app.use(cors());
 
 const storage = multer.memoryStorage();
 const upload = multer({

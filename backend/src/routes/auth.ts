@@ -8,7 +8,7 @@ import cors from "cors";
 
 
 const router = express.Router();
-app.use(cors());
+router.use(cors());
 
 router.post("/login", [
     check("email", "Email is required").isEmail(),

@@ -2,9 +2,15 @@ import express, { Request, Response } from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
+<<<<<<< HEAD
 import verifyToken from "../middleware/auth";
+=======
+import verifyToken from '../middleware/auth';
+import cors from "cors";
+>>>>>>> 2241fd8050fb952df458a7aff064d77cc2a219df
 
 const router = express.Router();
+router.use(cors());
 
 router.get("/me", verifyToken, async (req: Request, res: Response) => {
   const userId = req.userId;

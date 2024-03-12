@@ -2,8 +2,10 @@ import express, { Request, Response } from "express";
 import verifyToken from "../middleware/auth";
 import Hotel from "../models/hotel";
 import { HotelType } from "../shared/types";
+import cors from "cors";
 
 const router = express.Router();
+router.use(cors());
 
 // /api/my-bookings
 router.get("/", verifyToken, async (req: Request, res: Response) => {

@@ -4,10 +4,13 @@ import { BookingType, HotelSearchResponse } from "../shared/types";
 import { param, validationResult } from "express-validator";
 import Stripe from "stripe";
 import verifyToken from "../middleware/auth";
+import cors from "cors";
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
+
 const router = express.Router();
+router.use(cors());
 
 router.get("/search", async (req: Request, res: Response) => {
   try {

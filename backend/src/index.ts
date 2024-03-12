@@ -38,7 +38,7 @@ app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
 
-<<<<<<< HEAD
+
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
@@ -46,7 +46,7 @@ app.get("*", (req: Request, res: Response) => {
 app.listen(7000, () => {
   console.log("server running on localhost:7000");
 });
-=======
+
 app.get("*", (req: Request, res:Response)=>{
     res.sendFile(path.join(__dirname,"../../frontend/index.html"));
 })
@@ -60,4 +60,4 @@ mongoose.connect(process.env.MONGO_URL as string)
 app.listen(8080, ()=>{
     console.log("app is running on the port 8080")
 });
->>>>>>> 2241fd8050fb952df458a7aff064d77cc2a219df
+

@@ -12,7 +12,7 @@ import hotelRoutes from "./routes/hotels";
 import bookingRoutes from "./routes/my-bookings";
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINAY_CLOUD_NAME,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
@@ -38,7 +38,6 @@ app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
 
-
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
@@ -46,18 +45,3 @@ app.get("*", (req: Request, res: Response) => {
 app.listen(7000, () => {
   console.log("server running on localhost:7000");
 });
-
-app.get("*", (req: Request, res:Response)=>{
-    res.sendFile(path.join(__dirname,"../../frontend/index.html"));
-})
-
-app.use(cors());
- 
-mongoose.connect(process.env.MONGO_URL as string)
-    .then(()=>console.log("DB Connected Successfully"))
-    .catch((e)=>console.log(e))
-
-app.listen(8080, ()=>{
-    console.log("app is running on the port 8080")
-});
-

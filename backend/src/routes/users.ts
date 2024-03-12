@@ -2,9 +2,6 @@ import express, { Request, Response } from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
-
-import verifyToken from "../middleware/auth";
-
 import verifyToken from '../middleware/auth';
 import cors from "cors";
 

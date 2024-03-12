@@ -6,10 +6,10 @@ import {
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { StripeCardElement } from "@stripe/stripe-js";
 import { useSearchContext } from "../../contexts/SearchContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMutation } from "react-query";
 import * as apiClient from "../../api-client";
-import { useAppCOntext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/AppContext";
 
 type Props = {
   currentUser: UserType;
@@ -17,7 +17,6 @@ type Props = {
 };
 
 export type BookingFormData = {
-
   firstName: string;
   lastName: string;
   email: string;
@@ -28,25 +27,22 @@ export type BookingFormData = {
   hotelId: string;
   paymentIntentId: string;
   totalCost: number;
-
 };
 
 const BookingForm = ({ currentUser, paymentIntent }: Props) => {
-  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
 
   const search = useSearchContext();
   const { hotelId } = useParams();
 
-  const { showToast } = useAppCOntext();
+  const { showToast } = useAppContext();
 
   const { mutate: bookRoom, isLoading } = useMutation(
     apiClient.createRoomBooking,
     {
       onSuccess: () => {
         showToast({ message: "Booking Saved!", type: "SUCCESS" });
-        navigate("/my-bookings")
       },
       onError: () => {
         showToast({ message: "Error saving booking", type: "ERROR" });
@@ -70,7 +66,6 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
   });
 
   const onSubmit = async (formData: BookingFormData) => {
-
     if (!stripe || !elements) {
       return;
     }
@@ -130,10 +125,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
 
         <div className="bg-blue-200 p-4 rounded-md">
           <div className="font-semibold text-lg">
-            Total Cost: {paymentIntent.totalCost.toLocaleString('en-IN', {
-                                                                        style: 'currency',
-                                                                        currency: 'INR',
-                                                                      })}
+            Total Cost: £{paymentIntent.totalCost.toFixed(2)}
           </div>
           <div className="text-xs">Includes taxes and charges</div>
         </div>
@@ -151,7 +143,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
         <button
           disabled={isLoading}
           type="submit"
-          className="bg-indigo-600 text-white p-2 font-bold hover:bg-indigo-500 text-md disabled:bg-gray-500"
+          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-md disabled:bg-gray-500"
         >
           {isLoading ? "Saving..." : "Confirm Booking"}
         </button>

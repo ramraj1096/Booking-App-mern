@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import { useSearchContext } from "../../contexts/SearchContext";
-import { useAppCOntext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/AppContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
 type Props = {
@@ -18,7 +18,7 @@ type GuestInfoFormData = {
 
 const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
   const search = useSearchContext();
-  const { isLoggedIn } = useAppCOntext();
+  const { isLoggedIn } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -68,10 +68,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
 
   return (
     <div className="flex flex-col p-4 bg-blue-200 gap-4">
-      <h3 className="text-md font-bold">{pricePerNight.toLocaleString('en-IN', {
-                                                                        style: 'currency',
-                                                                        currency: 'INR',
-                                                                      })} per night</h3>
+      <h3 className="text-md font-bold">£{pricePerNight}</h3>
       <form
         onSubmit={
           isLoggedIn ? handleSubmit(onSubmit) : handleSubmit(onSignInClick)
@@ -145,11 +142,11 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             )}
           </div>
           {isLoggedIn ? (
-            <button className="bg-indigo-600 text-white h-full p-2 font-bold hover:bg-indigo-500 text-xl">
+            <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">
               Book Now
             </button>
           ) : (
-            <button className="bg-indigo-600 text-white h-full p-2 font-bold hover:bg-indigo-500 text-xl">
+            <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">
               Sign in to Book
             </button>
           )}

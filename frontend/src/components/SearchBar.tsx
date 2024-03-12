@@ -24,7 +24,7 @@ const SearchBar = () => {
       adultCount,
       childCount
     );
-    navigate(`/search`);
+    navigate("/search");
   };
 
   const minDate = new Date();
@@ -39,7 +39,7 @@ const SearchBar = () => {
       <div className="flex flex-row items-center flex-1 bg-white p-2">
         <MdTravelExplore size={25} className="mr-2" />
         <input
-          placeholder="Enter Destination"
+          placeholder="Where are you going?"
           className="text-md w-full focus:outline-none"
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
@@ -99,7 +99,7 @@ const SearchBar = () => {
         />
       </div>
       <div className="flex gap-1">
-        <button className="w-2/3 bg-indigo-600 text-white h-full p-2 font-bold text-xl hover:bg-indigo-500">
+        <button className="w-2/3 bg-blue-600 text-white h-full p-2 font-bold text-xl hover:bg-blue-500">
           Search
         </button>
         <button className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500">

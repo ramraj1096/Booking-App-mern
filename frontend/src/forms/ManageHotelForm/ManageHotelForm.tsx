@@ -53,45 +53,39 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
 
     formDataJson.facilities.forEach((facility, index) => {
       formData.append(`facilities[${index}]`, facility);
-
     });
 
     if (formDataJson.imageUrls) {
       formDataJson.imageUrls.forEach((url, index) => {
         formData.append(`imageUrls[${index}]`, url);
-
       });
     }
 
     Array.from(formDataJson.imageFiles).forEach((imageFile) => {
       formData.append(`imageFiles`, imageFile);
-
     });
 
     onSave(formData);
-
   });
 
   return (
     <FormProvider {...formMethods}>
-
       <form className="flex flex-col gap-10" onSubmit={onSubmit}>
         <DetailsSection />
         <TypeSection />
         <FacilitiesSection />
         <GuestsSection />
         <ImagesSection />
-        <span className="flex justify-end px-16">
+        <span className="flex justify-end">
           <button
             disabled={isLoading}
             type="submit"
-            className="bg-indigo-600 text-white p-2 font-bold hover:bg-indigo-500 text-xl disabled:bg-gray-500"
+            className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl disabled:bg-gray-500"
           >
             {isLoading ? "Saving..." : "Save"}
           </button>
         </span>
       </form>
-
     </FormProvider>
   );
 };

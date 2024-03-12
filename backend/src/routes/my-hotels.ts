@@ -53,7 +53,6 @@ router.post(
     } catch (e) {
       console.log(e);
       res.status(500).json({ message: "Something went wrong" });
-      
     }
   }
 );
@@ -62,10 +61,8 @@ router.get("/", verifyToken, async (req: Request, res: Response) => {
   try {
     const hotels = await Hotel.find({ userId: req.userId });
     res.json(hotels);
-
   } catch (error) {
     res.status(500).json({ message: "Error fetching hotels" });
-
   }
 });
 
@@ -75,12 +72,10 @@ router.get("/:id", verifyToken, async (req: Request, res: Response) => {
     const hotel = await Hotel.findOne({
       _id: id,
       userId: req.userId,
-
     });
     res.json(hotel);
   } catch (error) {
     res.status(500).json({ message: "Error fetching hotels" });
-
   }
 });
 
@@ -100,7 +95,6 @@ router.put(
         },
         updatedHotel,
         { new: true }
-
       );
 
       if (!hotel) {
@@ -117,13 +111,11 @@ router.put(
 
       await hotel.save();
       res.status(201).json(hotel);
-
     } catch (error) {
       res.status(500).json({ message: "Something went throw" });
     }
   }
 );
-
 
 async function uploadImages(imageFiles: Express.Multer.File[]) {
   const uploadPromises = imageFiles.map(async (image) => {

@@ -13,8 +13,8 @@ const bookingSchema = new mongoose.Schema<BookingType>({
   totalCost: { type: Number, required: true },
 });
 
-const hotelSchema = new mongoose.Schema({
-    userId: { type: String, required: true },
+const hotelSchema = new mongoose.Schema<HotelType>({
+  userId: { type: String, required: true },
   name: { type: String, required: true },
   city: { type: String, required: true },
   country: { type: String, required: true },
@@ -27,8 +27,7 @@ const hotelSchema = new mongoose.Schema({
   starRating: { type: Number, required: true, min: 1, max: 5 },
   imageUrls: [{ type: String, required: true }],
   lastUpdated: { type: Date, required: true },
-  bookings:[bookingSchema],
-
+  bookings: [bookingSchema],
 });
 
 const Hotel = mongoose.model<HotelType>("Hotel", hotelSchema);

@@ -98,13 +98,11 @@ router.post(
       return res.status(400).json({ message: "Hotel not found" });
     }
 
-    const totalCost = hotel.pricePerNight * numberOfNights > 999999 ? 999999 : hotel.pricePerNight * numberOfNights;
-    
- 
+    const totalCost = hotel.pricePerNight * numberOfNights;
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalCost * 100,
-      currency: "INR",
+      currency: "gbp",
       metadata: {
         hotelId,
         userId: req.userId,
@@ -188,17 +186,17 @@ const constructSearchQuery = (queryParams: any) => {
     ];
   }
 
-//   if (queryParams.adultCount) {
-//     constructedQuery.adultCount = {
-//       $gte: parseInt(queryParams.adultCount),
-//     };
-//   }
+  if (queryParams.adultCount) {
+    constructedQuery.adultCount = {
+      $gte: parseInt(queryParams.adultCount),
+    };
+  }
 
-//   if (queryParams.childCount) {
-//     constructedQuery.childCount = {
-//       $gte: parseInt(queryParams.childCount),
-//     };
-//   }
+  if (queryParams.childCount) {
+    constructedQuery.childCount = {
+      $gte: parseInt(queryParams.childCount),
+    };
+  }
 
   if (queryParams.facilities) {
     constructedQuery.facilities = {

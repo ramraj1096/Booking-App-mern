@@ -5,7 +5,6 @@ import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
 
 const Detail = () => {
-  
   const { hotelId } = useParams();
 
   const { data: hotel } = useQuery(
@@ -21,7 +20,7 @@ const Detail = () => {
   }
 
   return (
-    <div className="space-y-6 px-16">
+    <div className="space-y-6">
       <div>
         <span className="flex">
           {Array.from({ length: hotel.starRating }).map(() => (

@@ -2,14 +2,13 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  
+  Navigate,
 } from "react-router-dom";
-import Layout from './Layouts/layout'
+import Layout from "./Layouts/layout";
 import Register from "./pages/Register";
-import Layout2 from "./Layouts/layoutforall";
 import SignIn from "./pages/SignIn";
-import { useAppCOntext } from "./contexts/AppContext";
 import AddHotel from "./pages/AddHotel";
+import { useAppContext } from "./contexts/AppContext";
 import MyHotels from "./pages/MyHotels";
 import EditHotel from "./pages/EditHotel";
 import Search from "./pages/Search";
@@ -19,23 +18,25 @@ import MyBookings from "./pages/MyBookings";
 import Home from "./pages/Home";
 
 const App = () => {
-  const {isLoggedIn} = useAppCOntext();
+  const { isLoggedIn } = useAppContext();
   return (
     <Router>
       <Routes>
         <Route
-          path='/' 
+          path="/"
           element={
-          <Layout>
-            <Home/>
-          </Layout>}
+            <Layout>
+              <Home />
+            </Layout>
+          }
         />
         <Route
-          path='/search' 
+          path="/search"
           element={
-          <Layout>
-            <Search/>
-          </Layout>}
+            <Layout>
+              <Search />
+            </Layout>
+          }
         />
         <Route
           path="/detail/:hotelId"
@@ -45,82 +46,72 @@ const App = () => {
             </Layout>
           }
         />
-
-        
-
-        <Route 
-          path='/sign-in' 
+        <Route
+          path="/register"
           element={
-            <Layout2>
-              <SignIn/>
-            </Layout2>}
+            <Layout>
+              <Register />
+            </Layout>
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={
+            <Layout>
+              <SignIn />
+            </Layout>
+          }
         />
 
-        <Route 
-          path='/register' 
-          element={
-            <Layout2>
-              <Register/>
-            </Layout2>}
-        />
-
-        {
-          isLoggedIn && <>
-            <Route 
-            path='/add-hotel' 
-            element={
-              <Layout2>
-                <AddHotel/>
-              </Layout2>}
-            />
-
-            <Route 
-            path='/my-hotels' 
-            element={
-              <Layout2>
-                <MyHotels/>
-              </Layout2>}
-            />
-
-            <Route 
-              path={`/edit-hotel/:hotelId`} 
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/hotel/:hotelId/booking"
               element={
-              <Layout2>
-                <EditHotel/>
-              </Layout2>}
+                <Layout>
+                  <Booking />
+                </Layout>
+              }
             />
 
-            <Route 
-              path={`/hotel/:hotelId/booking`} 
+            <Route
+              path="/add-hotel"
               element={
-              <Layout2>
-                <Booking/>
-              </Layout2>}
+                <Layout>
+                  <AddHotel />
+                </Layout>
+              }
             />
-
-              <Route
+            <Route
+              path="/edit-hotel/:hotelId"
+              element={
+                <Layout>
+                  <EditHotel />
+                </Layout>
+              }
+            />
+            <Route
+              path="/my-hotels"
+              element={
+                <Layout>
+                  <MyHotels />
+                </Layout>
+              }
+            />
+            <Route
               path="/my-bookings"
               element={
-                <Layout2>
+                <Layout>
                   <MyBookings />
-                </Layout2>
+                </Layout>
               }
             />
           </>
-        }
-
-
-
-        <Route 
-          path='/*' 
-          element={
-            <Layout2>
-              <span className="text-3xl px-16 flex justify-center py-8 ">Page Not Found</span>
-            </Layout2>}
-        />
+        )}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
-  )
-}
+  );
+};
 
-export default App
+export default App;

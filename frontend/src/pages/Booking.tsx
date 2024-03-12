@@ -6,10 +6,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import BookingDetailsSummary from "../components/BookingDetailsSummary";
 import { Elements } from "@stripe/react-stripe-js";
-import { useAppCOntext } from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 
 const Booking = () => {
-  const { stripePromise } = useAppCOntext();
+  const { stripePromise } = useAppContext();
   const search = useSearchContext();
   const { hotelId } = useParams();
 
@@ -50,13 +50,12 @@ const Booking = () => {
     apiClient.fetchCurrentUser
   );
 
-
   if (!hotel) {
     return <></>;
   }
 
   return (
-    <div className="grid md:grid-cols-[1fr_2fr] space-x-3 px-16">
+    <div className="grid md:grid-cols-[1fr_2fr]">
       <BookingDetailsSummary
         checkIn={search.checkIn}
         checkOut={search.checkOut}

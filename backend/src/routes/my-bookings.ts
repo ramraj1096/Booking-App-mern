@@ -22,7 +22,6 @@ router.get("/", verifyToken, async (req: Request, res: Response) => {
         bookings: userBookings,
       };
 
-
       return hotelWithUserBookings;
     });
 
